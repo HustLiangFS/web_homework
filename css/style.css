@@ -29,6 +29,8 @@ form.add-info {
 
 form.add-info input[type="text"] {
   width: 130px;
+  background-color: #FAFAFA;
+  color: #212121;
   margin-right: 5px;
   line-height: 30px;
   text-indent: 3px;
@@ -36,6 +38,8 @@ form.add-info input[type="text"] {
 }
 
 form.add-info input[type="submit"] {
+  background-color: #78909C;
+  color: #FFFFFF;
   height: 34px;
   border-width: 0px;
   padding: 0px 20px;
@@ -64,10 +68,15 @@ ul.container li span {
 }
 
 ul.container li.title {
+  background-color: #515A5A;
+  color: #FFFFFF;
   border: 1px solid #168;
+
 }
 
 ul.container li.item {
+  background-color: #E5E8E8;
+  color: #000;
   border-left: 1px solid #168;
   border-bottom: 1px solid #168;
   border-right: 1px solid #168;
