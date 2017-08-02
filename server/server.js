@@ -2,16 +2,26 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'web_homework'
+});
+connection.connect();
+//var insertsql = 'insert into web_table (number,name,phone) values (body.body.name,students.body.phone)';
+//var deletesql = 'delete from web_table where number = students.data[i].number and name = students.data[i].name and phone = students.data[i].phone';
 
 app.use(cors());
 
 var jsonParser = bodyParser.json()
 
-var id = 0;
+var id = 1;
 var students = {
     data: []
 };
- 
+
 app.post('/info/all', jsonParser, function (req, res) {
     res.send(JSON.stringify(students));
 });
@@ -24,10 +34,25 @@ app.post('/info/add', jsonParser, function (req, res) {
         number: body.number,
         phone: body.phone
     });
+    
+    var insertsql = 'insert into web_table (number,name,phone) values (students.data.number,students.data.name,students.data.phone)';
+    //connection.connect();
+    connection.query(insertsql, function (err0, res0) {
+    if (err0){
+        console.log(err0);
+    } 
+    else{
+        console.log("Insert Return ==> ");
+        console.log(res0);
+    }
+    
+    });
+    //connection.end();
 
     res.send(JSON.stringify({
         status: 1
     }));
+
 });
 
 app.post('/info/delete', jsonParser, function (req, res) {
@@ -38,6 +63,14 @@ app.post('/info/delete', jsonParser, function (req, res) {
             break;
         }
     }
+
+    //connection.connect();
+    /*connection.query(deletesql, function (err1, res1) {
+    if (err0) console.log(err0);
+    console.log("DELETE Return ==> ");
+    console.log(res1);
+    });*/
+    //connection.end();
 
     res.send(JSON.stringify({
         status: 1
