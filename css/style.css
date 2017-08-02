@@ -81,3 +81,31 @@ ul.container li.item {
   border-bottom: 1px solid #168;
   border-right: 1px solid #168;
 }
+
+ul.container li.item input {
+  
+  width: 120px;
+  float: left;
+  height: 25px;
+  margin: 5px 10px;
+}
+
+ul.container li.item button {
+  font-family: "STZhongsong", sans-serif;
+  width: 40px;
+  line-height: 24px;
+  margin: 5.5px 2px 0px 0px;
+  border-width: 0px;
+  background-color: #abc;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+ul.container li.item button.modify{
+  margin-left: 28px;
+}
+
+ul.container li.item button.complete{
+  margin-left: 28px;
+}
