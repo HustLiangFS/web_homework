@@ -19,7 +19,21 @@ var id = 0;
 var students = {
     data: []
 };
-
+connection.query('SELECT * FROM test_table', function(err0, rows0) {
+    if (err0){
+        throw err0;
+    }
+    else{
+        //console.log("SELECT ==> ");
+        students = {data:rows0};
+        //console.log(rows0.length);
+        for (var i in rows0) {
+            id = rows0[i].id + 1;
+        }
+        //console.log(rows0);
+    }
+    
+});
 app.post('/info/all', jsonParser, function (req, res) {
     res.send(JSON.stringify(students));
 });
@@ -37,14 +51,14 @@ app.post('/info/add', jsonParser, function (req, res) {
     var insertparam = [id,body.number,body.name,body.phone];
     id++;
     //connection.connect();
-    connection.query(insertsql,insertparam, function (err0, res0) {
-    if (err0){
-        console.log(err0);
+    connection.query(insertsql,insertparam, function (err1, res1) {
+    if (err1){
+        console.log(err1);
     } 
-    else{
-        console.log("Insert Return ==> ");
-        console.log(res0);
-    }
+    /*else{
+        //console.log("Insert Return ==> ");
+        //console.log(res1);
+    }*/
     
     });
     //connection.end();
@@ -67,14 +81,14 @@ app.post('/info/delete', jsonParser, function (req, res) {
 
     var deletesql = 'DELETE FROM test_table where id=?';
     var deleteparam = [userId];
-    connection.query(deletesql, deleteparam, function (err1, res1) {
-        if (err1){
-            console.log(err1);
+    connection.query(deletesql, deleteparam, function (err2, res2) {
+        if (err2){
+            console.log(err2);
         }
-        else{
+        /*else{
             console.log("DELETE Return ==> ");
-            console.log(res1);
-        }
+            console.log(res2);
+        }*/
 
     });
     //connection.connect();
@@ -99,14 +113,14 @@ app.post('/info/modify', jsonParser, function (req, res) {
     }
     var modifysql = 'UPDATE test_table SET number = ?,name = ?,phone=? WHERE Id = ?'
     var modifyparam = [body.number,body.name,body.phone,body.id];
-    connection.query(modifysql, modifyparam, function (err2, res2) {
-        if (err2){
-            console.log(err2);
+    connection.query(modifysql, modifyparam, function (err3, res3) {
+        if (err3){
+            console.log(err3);
         }
-        else{
+        /*else{
             console.log("MODIFY Return ==> ");
-            console.log(res2);
-        }
+            console.log(res3);
+        }*/
 
     });
     res.send(JSON.stringify({
